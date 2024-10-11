@@ -14,7 +14,12 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 // Initialize Express
 const app = express();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: '*', // Allow requests from your frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // If you're sending cookies or authorization headers
+}));
 
 // Request Logging Middleware
 app.use((req, res, next) => {
